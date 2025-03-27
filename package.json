@@ -6,23 +6,34 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "postbuild": "next-sitemap",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --c .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier \"*/**/*.{js,jsx,ts,tsx,css,scss}\" --write",
+    "format:check": "prettier \"*/**/*.{js,jsx,ts,tsx,css,scss}\" -c",
+    "compile": "tsc"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.0",
+    "axios": "^1.8.4",
     "next": "15.2.4",
+    "prettier": "^3.5.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@storybook/nextjs": "^8.6.10",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "eslint": "^8.57.1",
     "eslint-config-next": "15.2.4",
+    "eslint-plugin-next": "^0.0.0",
     "typescript": "^5"
-  }
+  },
+  "type": "module"
 }

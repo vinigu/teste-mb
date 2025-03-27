@@ -1,0 +1,50 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* Erro ocorendo com o scroll to top refente ao body heigh com 100%*/
+/* Validar outra forma de Funcionar isso  */
+
+html,
+/* body, */
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+}
+*:focus-visible {
+  outline: none;
+}
+
+.Toastify__toast-container {
+  z-index: 99999999999999999999999999;
+}
+
+.Toastify__toast-container--top-right {
+  top: 75px;
+}
+
+@media screen and (max-width: 768px) {
+  .Toastify__toast-container--top-right {
+    top: 55px;
+  }
+}
+
+:root {
+  --primary-color-btn: #4a90e2; /* Azul suave */
+  --secondary-color-btn: #f5a623; /* Laranja */
+  --primary-color-btn-hover: #003d73; /* Azul escuro */
+  --secondary-color-btn-hover: #d17f00; /* Laranja mais escuro para hover */
+  --title-text-rentals: #e1e1e1; /* Texto principal em cinza claro */
+  --primary-color-input-focused: #50e3c2; /* Verde esmeralda */
+  --primary-color-check: #4a90e2; /* Azul para check */
+  --secondary-color-check: #f5a623; /* Laranja para check */
+  --primary-color-radio: #4a90e2; /* Azul para radio */
+  --primary-border-color-input: #50e3c2; /* Verde esmeralda para bordas de input */
+  --primary-color-icon: #4a90e2; /* Azul para ícones */
+  --color-footer-rentals: #2c3e50; /* Fundo escuro para rodapé */
+  --secondary-color-hover: #34495e; /* Hover escuro para rodapé */
+  --secondary-color-footer-rentals: #34495e; /* Leve variação para footer */
+}

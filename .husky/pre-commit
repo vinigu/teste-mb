@@ -4,4 +4,3 @@
 npm lint
 npm format:check
 npm compile
-npm test:changes
