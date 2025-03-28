@@ -26,6 +26,9 @@
       "@/*": [
         "./src/*"
       ],
+      "@contexts/*": [
+        "./contexts/*"
+      ],
       "@components/*": [
         "./components/*"
       ],
@@ -33,7 +36,10 @@
         "./services/*"
       ],
       "@styles/*": [
-        "./styles/*"
+        "./src/styles/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
       ],
       "@helpers/*": [
         "./helpers/*"

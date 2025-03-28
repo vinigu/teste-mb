@@ -1,0 +1,33 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* Erro ocorendo com o scroll to top refente ao body heigh com 100%*/
+/* Validar outra forma de Funcionar isso  */
+
+html,
+/* body, */
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+}
+*:focus-visible {
+  outline: none;
+}
+
+.Toastify__toast-container {
+  z-index: 99999999999999999999999999;
+}
+
+.Toastify__toast-container--top-right {
+  top: 75px;
+}
+
+@media screen and (max-width: 768px) {
+  .Toastify__toast-container--top-right {
+    top: 55px;
+  }
+}

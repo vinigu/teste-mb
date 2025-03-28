@@ -1,29 +1,23 @@
+import { apiKey, apiUrl } from '@helpers/config';
+import ValidationException from '@helpers/ValidationException';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
-import { apiKey, apiUrl } from '../helpers/config';
-import ValidationException from '../helpers/ValidationException';
 
-axios.defaults.baseURL = `${apiUrl}${apiKey}` ;
+axios.defaults.baseURL = apiUrl ;
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
   'allow-control-allow-origin': '*',
   'Access-Control-Allow-Methods': '*',
+  'Access-Control-Allow-Headers': '*',
+  Authorization: `Bearer ${apiKey}`,
 };
+
 
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    /**
-     * Todo erro, com excessão do ValidationException será
-     * logado no Sentry por padrão.
-     *
-     * ValidationException Deverá ser tratado dentro de um TryCatch.
-     *
-     * Loading, TryCatches e tratamento de erros deverão acontecer fora
-     * dos contextos.
-     */
     if (error instanceof AxiosError) {
       if (error.response) {
         const {
