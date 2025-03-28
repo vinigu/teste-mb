@@ -1,9 +1,16 @@
 import { Explicit, GradeOutlined } from "@mui/icons-material";
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 export interface MovieCardProps {
-  id: string;
-  name: string;
+  id: number;
+  title: string;
   path: string;
   genre: string;
   description: string | null;
@@ -11,11 +18,12 @@ export interface MovieCardProps {
   isAdult?: boolean;
   className?: string;
   href: string;
+  sx?: object;
 }
 
 export default function MovieCard({
   id,
-  name,
+  title,
   path,
   genre,
   description,
@@ -23,6 +31,7 @@ export default function MovieCard({
   isAdult,
   className,
   href,
+  sx,
 }: MovieCardProps) {
   return (
     <Card
@@ -31,16 +40,18 @@ export default function MovieCard({
         border: "1.09px solid var(--border-cards-color)",
         boxShadow: "none",
         maxWidth: "350px",
+        flexShrink: 0,
         [theme.breakpoints.up("md")]: {
           width: "calc(100% - 10px)",
           ml: "10px",
         },
         [theme.breakpoints.down("md")]: {
-          width: "calc(95vw - 10px) ",
+          width: "calc(95vw - 10px)",
         },
         "&.equipment-card-mobile": {
-          width: "100% ",
+          width: "100%",
         },
+        ...sx,
       })}
       key={id}
       className={className}
@@ -60,10 +71,13 @@ export default function MovieCard({
           ></Box>
           <CardMedia
             component="img"
-            alt={name}
+            alt={title}
             width="290"
             height="180"
             image={path}
+            sx={{
+              objectFit: "cover",
+            }}
           />
         </Box>
         <CardContent sx={{ p: "16px !important" }}>
@@ -94,7 +108,7 @@ export default function MovieCard({
                 }}
                 data-testid="title"
               >
-                {name}
+                {title}
               </Typography>
               <Typography
                 variant="body2"
@@ -187,6 +201,43 @@ export default function MovieCard({
                       {rating}
                     </Typography>
                   </Box>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                    gap: "10px",
+                    mt: 2,
+                  }}
+                >
+                  <Button
+                    startIcon={<FavoriteBorderIcon />}
+                    sx={{
+                      color: "#fff",
+                      width: "calc(50% - 30px)",
+                      fontFamily: "var(--font-title)",
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      textTransform: "capitalize",
+                      borderRadius: "8px",
+                      padding: "6px 10px",
+                      border: "1px solid var(--secondary-color-btn)",
+                      backgroundColor: "var(--secondary-color-btn)",
+                      transition: "all 0.3s ease-in-out",
+                      "&:hover": {
+                        backgroundColor: "var(--secondary-color-btn-hover)",
+                      },
+                    }}
+                    variant="outlined"
+                    data-testid="favorite-button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    Favoritar
+                  </Button>
                 </Box>
               </Box>
             </Box>

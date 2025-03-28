@@ -22,8 +22,8 @@ type Story = StoryObj<typeof MC>;
 export const MovieCard: Story = {
   args: {
 
-    id: 'es123',
-    name: 'Filme de teste',
+    id: 123,
+    title: 'Filme de teste',
     path: 'https://placehold.co/600x480/C933A6/fff/?text=filme',
     className: 'movie-class',
     description: 'Quando a Rainha Má manda matarem sua enteada por inveja de sua beleza, Branca de Neve foge do reino. Ela percorre a floresta e acha uma casinha onde vivem sete anões amigáveis com quem passa viver. Porém, a moça ainda não está a salvo, já que a bruxa planeja dar um fim a sua vida com uma maçã envenenada.',

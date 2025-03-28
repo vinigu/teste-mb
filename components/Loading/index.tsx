@@ -1,16 +1,46 @@
-import { Backdrop, CircularProgress, Typography } from '@mui/material';
+import { keyframes } from "@emotion/react";
+import { Backdrop, CircularProgress, Typography } from "@mui/material";
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 export default function Loading() {
   return (
     <Backdrop
       open
       sx={{
-        gap: 2,
-        zIndex: '9999999999999999999999999',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        zIndex: 9999,
       }}
     >
-      <CircularProgress sx={{ color: '#304BE9' }} data-testid="loading" />
-      <Typography sx={{ fontFamily: 'Montserrat' }} color="#fff" data-testid="text-loading">
+      <CircularProgress
+        sx={{
+          color: "var(--primary-color-btn)",
+          animation: "spin 1.5s linear infinite",
+        }}
+        data-testid="loading"
+      />
+      <Typography
+        sx={{
+          fontFamily: "var(--font-body)",
+          fontSize: "16px",
+          color: "#fff",
+          ml: 2,
+          letterSpacing: "2px",
+          fontWeight: "400",
+          animation: `${fadeIn} 1s ease-in-out`,
+        }}
+        data-testid="text-loading"
+      >
         Carregando...
       </Typography>
     </Backdrop>
