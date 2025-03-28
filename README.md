@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mb-test
 
-## Getting Started
+Este é um projeto [Next.js](https://nextjs.org) criado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-First, run the development server:
+## Começando
+
+Primeiro, execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Você pode começar a editar a página modificando `app/page.tsx`. A página será atualizada automaticamente conforme você edita o arquivo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este projeto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para otimizar e carregar automaticamente [Geist](https://vercel.com/font), uma nova família de fontes da Vercel.
 
-## Learn More
+## Scripts Disponíveis
 
-To learn more about Next.js, take a look at the following resources:
+No diretório do projeto, você pode executar:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev`: Inicia o servidor de desenvolvimento com o Turbopack.
+- `npm run build`: Cria a versão de produção do aplicativo.
+- `npm run start`: Inicia o servidor de produção.
+- `npm run postbuild`: Executa o `next-sitemap` após a build.
+- `npm run lint`: Executa o ESLint para verificar problemas no código.
+- `npm run lint:fix`: Corrige automaticamente problemas detectados pelo ESLint.
+- `npm run format`: Formata o código usando Prettier.
+- `npm run format:check`: Verifica a formatação do código com Prettier.
+- `npm run compile`: Compila o TypeScript.
+- `npm run storybook`: Inicia o Storybook no modo de desenvolvimento.
+- `npm run build-storybook`: Gera a build do Storybook.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Dependências
 
-## Deploy on Vercel
+### Produção
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `@emotion/react`: ^11.14.0
+- `@emotion/styled`: ^11.14.0
+- `@mui/icons-material`: ^7.0.0
+- `@mui/material`: ^7.0.0
+- `axios`: ^1.8.4
+- `next`: 15.2.4
+- `prettier`: ^3.5.3
+- `react`: ^19.0.0
+- `react-dom`: ^19.0.0
+- `react-slick`: ^0.30.3
+- `react-toastify`: ^11.0.5
+- `react-use`: ^17.6.0
+- `slick-carousel`: ^1.8.1
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Desenvolvimento
+
+- `@eslint/eslintrc`: ^3
+- `@storybook/addon-actions`: ^8.6.11
+- `@storybook/addon-essentials`: ^8.6.11
+- `@storybook/addon-links`: ^8.6.11
+- `@storybook/nextjs`: ^8.6.10
+- `@testing-library/dom`: ^10.4.0
+- `@testing-library/react`: ^16.2.0
+- `@types/jest`: ^29.5.14
+- `@types/node`: ^20
+- `@types/react`: ^19
+- `@types/react-dom`: ^19
+- `@types/react-slick`: ^0.23.13
+- `eslint`: ^8.57.1
+- `eslint-config-next`: 15.2.4
+- `eslint-plugin-next`: ^0.0.0
+- `jest`: ^29.7.0
+- `typescript`: ^5
+
+## Saiba Mais
+
+Para aprender mais sobre Next.js, confira os seguintes recursos:
+
+- [Documentação do Next.js](https://nextjs.org/docs) - Aprenda sobre os recursos e API do Next.js.
+- [Aprenda Next.js](https://nextjs.org/learn) - Um tutorial interativo de Next.js.
+
+Você também pode conferir [o repositório do Next.js no GitHub](https://github.com/vercel/next.js) - seu feedback e contribuições são bem-vindos!
+
+## Deploy na Vercel
+
+A maneira mais fácil de fazer o deploy do seu aplicativo Next.js é usar a [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) dos criadores do Next.js.
+
+Confira nossa [documentação de deploy do Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para mais detalhes.

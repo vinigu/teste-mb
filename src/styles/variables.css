@@ -1,0 +1,25 @@
+:root {
+  --primary-color-btn: #4a90e2;
+  --secondary-color-btn: #f5a623;
+  --primary-color-btn-hover: #003d73;
+  --secondary-color-btn-hover: #d17f00;
+  --title-text-color: #303030;
+  --subtitle-text-color: #5c5c5c;
+  --body-text-color: #7f7f7f;
+  --primary-color-input-focused: #50e3c2;
+  --primary-color-check: #4a90e2;
+  --secondary-color-check: #f5a623;
+  --primary-color-radio: #4a90e2;
+  --primary-border-color-input: #50e3c2;
+  --primary-color-icon: #4a90e2;
+  --color-footer: #34495e;
+  --color-pos-footer: #4a90e2;
+  --secondary-color-hover: #34495e;
+  --secondary-color-footer: #34495e;
+}
+
+:root {
+  --font-title: "Montserrat", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --font-secondary: "Lato", sans-serif;
+}
