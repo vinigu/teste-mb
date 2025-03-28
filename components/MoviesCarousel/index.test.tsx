@@ -1,92 +1,36 @@
-import { render, screen } from '@testing-library/react';
-import EquipmentsCarousel from '.';
-import IEquipment from '../../types/Equipment';
+import { render, screen } from "@testing-library/react";
+import MovieCarousel from ".";
+import IMovie from "../../types/Movie";
 
-const equipments: IEquipment[] = [
+const movies: IMovie[] = [
   {
     id: 1,
-    name: 'Card-1',
-    slug: 'category-1',
-    internal_code: 'ex21231',
-    is_semi_new: true,
-    hour_meter: 100,
-    price: 100000,
-    is_featured: true,
-    manufacture_year: '2021',
-    is_highlighted: true,
-    is_published: true,
-    blackfriday_tag: true,
-    images: ['https://via.placeholder.com//640x480.png/0077cc?text=alias'],
-    equipment_model: {
-      id: 19,
-      name: 'et',
-      slug: 'ut',
-      manufacturer_id: 8,
-      category_id: 6,
-    },
-    store: {
-      id: 2,
-      name: 'Cotia - SP',
-      src: '',
-      address: '',
-    },
-    state: {
-      id: 31,
-      name: 'Minas Gerais',
-      abbreviation: 'MG',
-    },
-    city: {
-      id: 2921906,
-      name: 'Mucug\u00ea',
-      state_id: 29,
-    },
+    title: "Movie 1",
+    poster_path: "/path/to/poster1.jpg",
+    genre_ids: [28, 12],
+    overview: "Overview of Movie 1",
+    vote_average: 8.5,
+    adult: false,
   },
   {
     id: 2,
-    name: 'Card-2',
-    slug: 'category-2',
-    internal_code: '132da',
-    is_semi_new: false,
-    hour_meter: 100123,
-    price: 100000,
-    is_featured: true,
-    is_highlighted: true,
-    is_published: true,
-    manufacture_year: '2020',
-    blackfriday_tag: true,
-    images: ['https://via.placeholder.com//640x480.png/0077cc?text=alias'],
-    equipment_model: {
-      id: 19,
-      name: 'et',
-      slug: 'ut',
-      manufacturer_id: 8,
-      category_id: 6,
-    },
-    store: {
-      id: 2,
-      name: 'Cotia - SP',
-      src: '',
-      address: '',
-    },
-    state: {
-      id: 31,
-      name: 'Minas Gerais',
-      abbreviation: 'MG',
-    },
-    city: {
-      id: 2921906,
-      name: 'Mucug\u00ea',
-      state_id: 29,
-    },
+    title: "Movie 2",
+    poster_path: "/path/to/poster2.jpg",
+    genre_ids: [16, 35],
+    overview: "Overview of Movie 2",
+    vote_average: 7.2,
+    adult: false,
   },
 ];
 
-describe('Equipments Card Carousel Component', () => {
-  it('should render component correctly', () => {
-    render(<EquipmentsCarousel data={equipments} />);
+describe("Movies Carousel Component", () => {
+  it("should render component correctly", () => {
+    render(<MovieCarousel data={movies} />);
 
-    const carousel = screen.getByTestId('EquipmentsCarousel');
+    const carousel = screen.getByTestId("MovieCarousel");
 
     expect(carousel).toBeInTheDocument();
+    expect(screen.getByText("Movie 1")).toBeInTheDocument();
+    expect(screen.getByText("Movie 2")).toBeInTheDocument();
   });
 });
