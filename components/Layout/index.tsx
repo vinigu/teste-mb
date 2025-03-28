@@ -1,3 +1,5 @@
+import Footer from "@components/Footer";
+import Header from "@components/Header";
 import { Box } from "@mui/material";
 
 interface ILayout {
@@ -7,7 +9,9 @@ interface ILayout {
 export default function Layout({ children }: ILayout) {
   return (
     <>
+      <Header />
       <Box>{children}</Box>
+      <Footer />
     </>
   );
 }

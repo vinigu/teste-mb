@@ -1,15 +1,30 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: true,
-  async rewrites() {
-    return [
+  env: {
+    TARGET_ENV: process.env.TARGET_ENV,
+  },
+  images: {
+    remotePatterns: [
       {
-        source: '/api/tmdb/:path*',  
-        destination: 'https://api.themoviedb.org/3/:path*', 
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
       },
-    ];
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+    ],
+    dangerouslyAllowSVG: true,
   },
 };
 

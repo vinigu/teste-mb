@@ -3,14 +3,10 @@ import ValidationException from '@helpers/ValidationException';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = apiUrl ;
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = `${apiUrl}`;
 axios.defaults.headers.common = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
-  'allow-control-allow-origin': '*',
-  'Access-Control-Allow-Methods': '*',
-  'Access-Control-Allow-Headers': '*',
   Authorization: `Bearer ${apiKey}`,
 };
 

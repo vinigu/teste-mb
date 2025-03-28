@@ -23,9 +23,6 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
       "@contexts/*": [
         "./contexts/*"
       ],
@@ -34,6 +31,9 @@
       ],
       "@services/*": [
         "./services/*"
+      ],
+      "@types/*": [
+        "./types/*"
       ],
       "@styles/*": [
         "./src/styles/*"
@@ -51,7 +51,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ""
+    "src/**/*",
+    "types/**/*"
   ],
   "exclude": [
     "node_modules"
