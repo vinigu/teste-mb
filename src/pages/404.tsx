@@ -37,7 +37,7 @@ const FourOhFour: React.FC = () => (
       <Typography
         sx={(theme) => ({
           mt: 2,
-          fontFamily: "Axiforma Regular",
+          fontFamily: "var(--font-title)",
           [theme.breakpoints.up("md")]: {
             fontSize: "48px",
           },
@@ -51,7 +51,7 @@ const FourOhFour: React.FC = () => (
 
       <Typography
         sx={(theme) => ({
-          fontFamily: "Axiforma Regular",
+          fontFamily: "var(--font-title)",
           [theme.breakpoints.up("md")]: {
             fontSize: "16px",
           },
@@ -78,7 +78,7 @@ const FourOhFour: React.FC = () => (
           },
           borderRadius: "10px",
           textTransform: "UpperCase",
-          fontFamily: "Axiforma Regular",
+          fontFamily: "var(--font-title)",
           fontSize: "12px",
         }}
       >
