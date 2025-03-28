@@ -26,9 +26,8 @@ export default function MovieCarousel({ data }: IMovieCarousel) {
             id={movie.id}
             href={`/movie/${movie.id}`}
             title={movie.title}
-            path={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
+            path={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             genre={movie.genre_ids.join(", ")}
-            className="equipment-card-mobile"
             description={movie.overview}
             rating={movie.vote_average}
             isAdult={movie.adult}

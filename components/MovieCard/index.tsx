@@ -35,6 +35,7 @@ export default function MovieCard({
 }: MovieCardProps) {
   return (
     <Card
+      data-testid={`movie-card-${id}`}
       sx={(theme) => ({
         borderRadius: "8px",
         border: "1.09px solid var(--border-cards-color)",
