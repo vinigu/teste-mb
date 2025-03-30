@@ -82,7 +82,6 @@ export default function Page() {
                 href={`/movie/${movie.id}`}
                 title={movie.title}
                 path={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
-                genre={movie.genre_ids.join(", ")}
                 className="equipment-card-mobile"
                 description={movie.overview}
                 vote_average={movie.vote_average}
