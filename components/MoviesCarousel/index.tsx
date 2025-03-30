@@ -27,7 +27,6 @@ export default function MovieCarousel({ data }: IMovieCarousel) {
             href={`/movie/${movie.id}`}
             title={movie.title}
             path={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            genre={movie.genre_ids.join(", ")}
             description={movie.overview}
             vote_average={movie.vote_average}
             isAdult={movie.adult}
