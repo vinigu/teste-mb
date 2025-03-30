@@ -27,9 +27,8 @@ export const MovieCard: Story = {
     path: 'https://placehold.co/600x480/C933A6/fff/?text=filme',
     className: 'movie-class',
     description: 'Quando a Rainha Má manda matarem sua enteada por inveja de sua beleza, Branca de Neve foge do reino. Ela percorre a floresta e acha uma casinha onde vivem sete anões amigáveis com quem passa viver. Porém, a moça ainda não está a salvo, já que a bruxa planeja dar um fim a sua vida com uma maçã envenenada.',
-    rating: 5,
+    vote_average: 5,
     isAdult: false,
     href: '#',
-    genre: '123456',
   },
 };
