@@ -83,7 +83,7 @@ export default function Footer() {
                     fontSize: "18px",
                   }}
                 >
-                  Nossos filmes
+                  Nossa Api
                 </Typography>
                 <Stack spacing={0} pl={1}>
                   <Link

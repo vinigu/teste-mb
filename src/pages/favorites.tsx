@@ -1,27 +1,26 @@
 import MovieCard from "@components/MovieCard";
 import Wrapper from "@components/Wrapper";
+import { useFavorite } from "@contexts/Favorite";
 import { useLoading } from "@contexts/Loading";
 import { Box, Typography } from "@mui/material";
-import { get } from "@services/api";
 import { useState } from "react";
 import { useAsync } from "react-use";
 import { IMovie } from "../../types/Movie";
 
-export default function Page() {
+export default function FavoritePage() {
+  const { favoriteMovies } = useFavorite();
+
   const { showLoading } = useLoading();
   const [movies, setMovies] = useState<IMovie[]>([]);
 
   useAsync(async () => {
     showLoading(true);
 
-    const itens = await get({
-      url: `/movie/popular?language=pt-BR&region=BR&page=1&sort_by=popularity.desc`,
-    });
-    console.log(itens);
-    setMovies(itens.results);
-
+    if (!favoriteMovies) return;
+    console.log("favoriteMovies", favoriteMovies);
+    setMovies(favoriteMovies);
     showLoading(false);
-  }, []);
+  }, [favoriteMovies]);
   return (
     <Wrapper>
       <Box>
@@ -82,7 +81,6 @@ export default function Page() {
                 href={`/movie/${movie.id}`}
                 title={movie.title}
                 path={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
-                genre={movie.genre_ids.join(", ")}
                 className="equipment-card-mobile"
                 description={movie.overview}
                 vote_average={movie.vote_average}

@@ -1,4 +1,6 @@
-import { Explicit, GradeOutlined } from "@mui/icons-material";
+import { useFavorite } from "@contexts/Favorite";
+import { Explicit } from "@mui/icons-material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
   Box,
@@ -6,15 +8,16 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Rating,
   Typography,
 } from "@mui/material";
+
 export interface MovieCardProps {
   id: number;
   title: string;
   path: string;
-  genre: string;
   description: string | null;
-  rating: number;
+  vote_average: number;
   isAdult?: boolean;
   className?: string;
   href: string;
@@ -25,14 +28,33 @@ export default function MovieCard({
   id,
   title,
   path,
-  genre,
   description,
-  rating,
+  vote_average,
   isAdult,
   className,
   href,
   sx,
 }: MovieCardProps) {
+  const { favoriteMovies, addFavorite, removeFavorite } = useFavorite();
+  const isFavorite = favoriteMovies.some((movie) => movie.id === id);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFavorite) {
+      removeFavorite(id);
+    } else {
+      addFavorite({
+        id,
+        title,
+        overview: description || "",
+        poster_path: path,
+        vote_average,
+        adult: !!isAdult,
+      });
+    }
+  };
+
   return (
     <Card
       data-testid={`movie-card-${id}`}
@@ -47,7 +69,7 @@ export default function MovieCard({
           ml: "10px",
         },
         [theme.breakpoints.down("md")]: {
-          width: "calc(95vw - 10px)",
+          width: "calc(90vw - 10px)",
         },
         "&.equipment-card-mobile": {
           width: "100%",
@@ -93,9 +115,9 @@ export default function MovieCard({
                   fontSize: "12px",
                   mb: "5px",
                 }}
-                data-testid="genre-id"
+                data-testid="id"
               >
-                {genre}
+                {id}
               </Typography>
               <Typography
                 variant="h5"
@@ -133,20 +155,10 @@ export default function MovieCard({
               }}
             >
               <Box
-                sx={(theme) => ({
-                  [theme.breakpoints.up("md")]: {
-                    width: "100%",
-                  },
-                })}
+                sx={{
+                  width: "100%",
+                }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "2px",
-                    mt: 1,
-                  }}
-                ></Box>
                 <Box
                   sx={{
                     display: "flex",
@@ -165,42 +177,18 @@ export default function MovieCard({
                           fontSize: "16px",
                         }}
                       />
-                      <Typography
-                        variant="subtitle2"
-                        component="div"
-                        sx={{
-                          color: "var(--title-text-color)",
-                          fontFamily: "var(--font-secondary)",
-                          fontSize: "12px",
-                        }}
-                        data-testid="adult_content"
-                      >
-                        Conteúdo adulto
-                      </Typography>
                     </Box>
                   )}
 
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "5px" }}
                   >
-                    <GradeOutlined
-                      sx={{
-                        color: "var(--title-text-color)",
-                        fontSize: "16px",
-                      }}
+                    <Rating
+                      name="rating_vote"
+                      defaultValue={vote_average / 2}
+                      precision={0.5}
+                      readOnly
                     />
-                    <Typography
-                      variant="subtitle2"
-                      component="div"
-                      sx={{
-                        color: "var(--title-text-color)",
-                        fontFamily: "var(--font-secondary)",
-                        fontSize: "12px",
-                      }}
-                      data-testid="hour_meter"
-                    >
-                      {rating}
-                    </Typography>
                   </Box>
                 </Box>
                 <Box
@@ -213,7 +201,9 @@ export default function MovieCard({
                   }}
                 >
                   <Button
-                    startIcon={<FavoriteBorderIcon />}
+                    startIcon={
+                      isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />
+                    }
                     sx={{
                       color: "#fff",
                       width: "calc(50% - 30px)",
@@ -232,12 +222,9 @@ export default function MovieCard({
                     }}
                     variant="outlined"
                     data-testid="favorite-button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
+                    onClick={handleFavoriteClick}
                   >
-                    Favoritar
+                    {isFavorite ? "Remover" : "Favoritar"}
                   </Button>
                 </Box>
               </Box>

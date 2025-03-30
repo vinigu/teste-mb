@@ -1,3 +1,4 @@
+import { FavoriteProvider } from "@contexts/Favorite";
 import { LoadingProvider } from "@contexts/Loading";
 import { ModalProvider } from "@contexts/Modal";
 
@@ -8,7 +9,9 @@ interface IAppContext {
 export default function AppProvider({ children }: IAppContext) {
   return (
     <LoadingProvider>
-      <ModalProvider>{children}</ModalProvider>
+      <FavoriteProvider>
+        <ModalProvider>{children}</ModalProvider>
+      </FavoriteProvider>
     </LoadingProvider>
   );
 }

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import MovieCarousel from ".";
-import IMovie from "../../types/Movie";
+import { IMovie } from "../../types/Movie";
 
 const movies: IMovie[] = [
   {

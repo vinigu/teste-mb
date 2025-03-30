@@ -2,6 +2,8 @@
 import Grid from "@components/Wrapper";
 import { ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
 import {
   Accordion,
   AccordionDetails,
@@ -33,7 +35,6 @@ export default function Header() {
     const { genres } = await get({
       url: "/genre/movie/list?language=pt-BR&region=BR",
     });
-    console.log(genres);
     setMenu(genres);
   }, []);
 
@@ -79,7 +80,7 @@ export default function Header() {
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: "flex-start",
+              justifyContent: "space-between",
               mr: 4,
               gap: 2,
             }}
@@ -139,7 +140,8 @@ export default function Header() {
                   <Box key={genre.id}>
                     <Link
                       key={genre.id}
-                      href={"/"}
+                      href={"/genre/" + genre.id}
+                      data-testid="genre-link"
                       sx={{
                         color: "#4C4C4C",
                         fontFamily: "var(--font-title)",
@@ -168,6 +170,55 @@ export default function Header() {
                   </Box>
                 ))}
               </Box>
+            </Box>
+            <Box
+              component="a"
+              href="/favorites"
+              data-testid="favorites"
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1,
+                textDecoration: "none",
+                transition: "all 0.3s ease-in-out",
+                "&:hover": {
+                  color: "#E53935",
+                  backgroundColor: "transparent",
+                  "& > .MuiSvgIcon-root": {
+                    color: "#D32F2F",
+                  },
+                  "& svg": {
+                    fontSize: "24px",
+                  },
+                },
+              }}
+            >
+              <FavoriteIcon
+                sx={{
+                  color: "#E53935",
+                  fontSize: "20px",
+                  transition: "all 0.3s ease-in-out",
+                }}
+              />
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#E53935",
+                  fontFamily: "var(--font-body)",
+                  fontSize: "14px",
+                  textTransform: "capitalize",
+                  textDecoration: "none",
+                  transition: "all 0.3s ease-in-out",
+                  "&:hover, &:focus, &:active": {
+                    color: "#D32F2F",
+                    textDecoration: "none",
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                Meus Favoritos
+              </Typography>
             </Box>
           </Box>
 
