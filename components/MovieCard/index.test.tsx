@@ -10,7 +10,7 @@ describe("Movie Card component", () => {
         path="https://example.com/image.jpg"
         genre="Ação"
         description="Descrição de teste"
-        rating={4.5}
+        vote_average={4.5}
         isAdult={true}
         href="#"
       />

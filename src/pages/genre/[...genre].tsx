@@ -3,25 +3,34 @@ import Wrapper from "@components/Wrapper";
 import { useLoading } from "@contexts/Loading";
 import { Box, Typography } from "@mui/material";
 import { get } from "@services/api";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useAsync } from "react-use";
-import { IMovie } from "../../types/Movie";
+import { IMovie } from "../../../types/Movie";
 
-export default function Page() {
+export default function GenrePage() {
   const { showLoading } = useLoading();
   const [movies, setMovies] = useState<IMovie[]>([]);
 
+  const router = useRouter();
+  const { genre } = router.query;
+
   useAsync(async () => {
     showLoading(true);
+    console.log("genre", genre);
+    if (!genre) return;
 
     const itens = await get({
-      url: `/movie/popular?language=pt-BR&region=BR&page=1&sort_by=popularity.desc`,
+      url: `/discover/movie?language=pt-BR&region=BR&with_genres=${genre}&sort_by=popularity.desc&page=1`,
     });
+
     console.log(itens);
+
     setMovies(itens.results);
 
     showLoading(false);
-  }, []);
+  }, [genre]);
+
   return (
     <Wrapper>
       <Box>
@@ -58,7 +67,7 @@ export default function Page() {
               },
             })}
           >
-            Filmes Populares
+            Categoria de filmes: {genre}
           </Typography>
         </Box>
         <Box
@@ -68,6 +77,7 @@ export default function Page() {
             gap: "10px",
             flexFlow: "row wrap",
             justifyContent: "center",
+
             [theme.breakpoints.up("md")]: {
               flexDirection: "row",
               gap: "25px",

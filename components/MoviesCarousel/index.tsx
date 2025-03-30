@@ -1,7 +1,7 @@
 import Carousel from "@components/Carousel";
 import MovieCard from "@components/MovieCard";
 import { Box } from "@mui/material";
-import IMovie from "../../types/Movie";
+import { IMovie } from "../../types/Movie";
 
 interface IMovieCarousel {
   data: IMovie[];
@@ -29,7 +29,7 @@ export default function MovieCarousel({ data }: IMovieCarousel) {
             path={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             genre={movie.genre_ids.join(", ")}
             description={movie.overview}
-            rating={movie.vote_average}
+            vote_average={movie.vote_average}
             isAdult={movie.adult}
           />
         ))}
