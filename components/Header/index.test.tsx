@@ -1,9 +1,8 @@
-import { FilterProvider } from '@contexts/Filter';
-import { render, screen } from '@testing-library/react';
-import Header from '.';
-import { RouterContext } from '../../mocks/router';
+import { render, screen } from "@testing-library/react";
+import Header from ".";
+import { RouterContext } from "../../mocks/router";
 
-jest.mock('next/navigation', () => ({
+jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => ({
     push: jest.fn(),
@@ -13,60 +12,56 @@ jest.mock('next/navigation', () => ({
   useSearchParams: () => ({
     get: () => {},
   }),
-  usePathname: () => '/',
+  usePathname: () => "/",
 }));
 
-test('Header component - MD sizes', () => {
+test("Header component - MD sizes", () => {
   const router = {
-    route: '/',
-    pathname: '/',
-    query: '',
-    asPath: '/',
+    route: "/",
+    pathname: "/",
+    query: "",
+    asPath: "/",
     push: async () => true,
   };
 
   render(
     <RouterContext.Provider value={router}>
-      <FilterProvider>
-        <Header />
-      </FilterProvider>
-    </RouterContext.Provider>,
+      <Header />
+    </RouterContext.Provider>
   );
 
-  const logo = screen.getByTestId('logo-md');
+  const logo = screen.getByTestId("logo-md");
   expect(logo).toBeInTheDocument();
 
-  const menu = screen.getByTestId('menu-md');
+  const menu = screen.getByTestId("menu-md");
   expect(menu).toBeInTheDocument();
 });
 
-test('Header component - XS sizes', () => {
-  Object.defineProperty(window, 'innerWidth', {
+test("Header component - XS sizes", () => {
+  Object.defineProperty(window, "innerWidth", {
     writable: true,
     configurable: true,
     value: 500,
   });
-  window.dispatchEvent(new Event('resize'));
+  window.dispatchEvent(new Event("resize"));
   const router = {
-    route: '/',
-    pathname: '/',
-    query: '',
-    asPath: '/',
+    route: "/",
+    pathname: "/",
+    query: "",
+    asPath: "/",
     push: async () => true,
   };
 
   render(
     <RouterContext.Provider value={router}>
-      <FilterProvider>
-        <Header />
-      </FilterProvider>
-    </RouterContext.Provider>,
+      <Header />
+    </RouterContext.Provider>
   );
 
-  const menu = screen.getByTestId('drawerMenuButton');
+  const menu = screen.getByTestId("drawerMenuButton");
   expect(menu).toBeInTheDocument();
 
-  const logo = screen.getByTestId('logo-xs');
+  const logo = screen.getByTestId("logo-xs");
   expect(logo).toBeInTheDocument();
 
   expect(window.innerWidth).toBe(500);

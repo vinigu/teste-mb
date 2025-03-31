@@ -1,5 +1,4 @@
 /* eslint-disable import/order */
-import Grid from "@components/Wrapper";
 import { ExpandMore, Menu as MenuIcon } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -50,126 +49,312 @@ export default function Header() {
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Grid>
-        <Toolbar
+      <Toolbar
+        sx={{
+          p: 2,
+          "&.MuiToolbar-root": {
+            p: " 0 20px",
+          },
+        }}
+      >
+        {/* Desktop */}
+        <Link
           sx={{
-            p: 0,
-            "&.MuiToolbar-root": {
-              p: 0,
-            },
+            mr: 3,
+            display: { xs: "none", md: "flex" },
+            alignItems: { xs: "none", md: "center" },
           }}
+          href="/"
         >
-          {/* Desktop */}
-          <Link
-            sx={{
-              mr: 3,
-              display: { xs: "none", md: "flex" },
-              alignItems: { xs: "none", md: "center" },
-            }}
-            href="/"
-          >
-            <Image
-              src="https://placehold.co/600x480/3D8EFC/fff/?text=Filmes"
-              width={180}
-              height={80}
-              alt="Logo Filmes"
-              data-testid="logo-md"
-            />
-          </Link>
+          <Image
+            src="https://placehold.co/600x480/3D8EFC/fff/?text=Filmes"
+            width={180}
+            height={80}
+            alt="Logo Filmes"
+            data-testid="logo-md"
+          />
+        </Link>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            justifyContent: "space-between",
+            mr: 4,
+            gap: 2,
+          }}
+          data-testid="menu-md"
+        >
           <Box
             sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "space-between",
-              mr: 4,
-              gap: 2,
+              position: "relative",
+              "&:hover": {
+                color: "#2C48EC",
+                backgroundColor: "transparent",
+                "& > .dropdown-menu": {
+                  opacity: 1,
+                  visibility: "visible",
+                },
+              },
             }}
-            data-testid="menu-md"
           >
-            <Box
+            <Button
+              endIcon={<ExpandMoreIcon />}
+              href="/estoque"
               sx={{
+                my: 2,
+                display: "flex",
+                alignItems: "center",
+                color: "#343A40",
+                textTransform: "none",
+                fontFamily: "var(--font-title)",
+                transition: "all 0.3s ease-in-out",
                 position: "relative",
-                "&:hover": {
-                  color: "#2C48EC",
-                  backgroundColor: "transparent",
-                  "& > .dropdown-menu": {
-                    opacity: 1,
-                    visibility: "visible",
-                  },
+              }}
+            >
+              Gêneros cinematográficos
+            </Button>
+            <Box
+              className="dropdown-menu"
+              sx={{
+                display: "flex",
+                flexFlow: "row wrap",
+                position: "absolute",
+                justifyContent: "normal",
+                alignItems: "center",
+                top: "70px",
+                left: "0 ",
+                opacity: 0,
+                visibility: "hidden",
+                gap: 4,
+                bgcolor: "#fff",
+                borderRadius: "5px",
+                boxShadow: "0px 0px 15px rgba(0, 12, 46, 0.1)",
+                p: "35px 40px",
+                width: "500px",
+                transition: "all 0.3s ease-in-out",
+              }}
+            >
+              {menu.map((genre: IGenre) => (
+                <Box key={genre.id}>
+                  <Link
+                    key={genre.id}
+                    href={"/genre/" + genre.id}
+                    data-testid="genre-link"
+                    sx={{
+                      color: "#4C4C4C",
+                      fontFamily: "var(--font-title)",
+                      textDecoration: "none",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#58595B",
+                        fontFamily: "var(--font-body)",
+                        fontSize: "14px",
+                        textTransform: "capitalize",
+                        textDecoration: "none",
+                        transition: "all 0.3s ease-in-out",
+                        "&:hover, &:focus, &:active": {
+                          color: "#2C48EC",
+                          textDecoration: "underline",
+                        },
+                      }}
+                    >
+                      {genre.name}
+                    </Typography>
+                  </Link>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+          <Box
+            component="a"
+            href="/favorites"
+            data-testid="favorites"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 1,
+              textDecoration: "none",
+              transition: "all 0.3s ease-in-out",
+              "&:hover": {
+                color: "#E53935",
+                backgroundColor: "transparent",
+                "& > .MuiSvgIcon-root": {
+                  color: "#D32F2F",
+                },
+                "& svg": {
+                  fontSize: "24px",
+                },
+              },
+            }}
+          >
+            <FavoriteIcon
+              sx={{
+                color: "#E53935",
+                fontSize: "20px",
+                transition: "all 0.3s ease-in-out",
+              }}
+            />
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#E53935",
+                fontFamily: "var(--font-body)",
+                fontSize: "14px",
+                textTransform: "capitalize",
+                textDecoration: "none",
+                transition: "all 0.3s ease-in-out",
+                "&:hover, &:focus, &:active": {
+                  color: "#D32F2F",
+                  textDecoration: "none",
+                  cursor: "pointer",
                 },
               }}
             >
-              <Button
-                endIcon={<ExpandMoreIcon />}
-                href="/estoque"
-                sx={{
-                  my: 2,
-                  display: "flex",
-                  alignItems: "center",
-                  color: "#343A40",
-                  textTransform: "none",
-                  fontFamily: "var(--font-title)",
-                  transition: "all 0.3s ease-in-out",
-                  position: "relative",
-                }}
-              >
-                Gêneros cinematográficos
-              </Button>
-              <Box
-                className="dropdown-menu"
-                sx={{
-                  display: "flex",
-                  flexFlow: "row wrap",
-                  position: "absolute",
-                  justifyContent: "normal",
-                  alignItems: "center",
-                  top: "70px",
-                  left: "0 ",
-                  opacity: 0,
-                  visibility: "hidden",
-                  gap: 4,
-                  bgcolor: "#fff",
-                  borderRadius: "5px",
-                  boxShadow: "0px 0px 15px rgba(0, 12, 46, 0.1)",
-                  p: "35px 40px",
-                  width: "500px",
-                  transition: "all 0.3s ease-in-out",
-                }}
-              >
-                {menu.map((genre: IGenre) => (
-                  <Box key={genre.id}>
-                    <Link
-                      key={genre.id}
-                      href={"/genre/" + genre.id}
-                      data-testid="genre-link"
+              Meus Favoritos
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Mobile */}
+        <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            size="large"
+            onClick={clickIcon}
+            data-testid="drawerMenuButton"
+            sx={{
+              pl: 0,
+              pr: 0,
+              mr: "15px",
+            }}
+          >
+            <MenuIcon sx={{ color: "#4c4c4c" }} />
+          </IconButton>
+          <Drawer
+            anchor="left"
+            open={isMenuDrawerOpen}
+            onClose={() => setIsMenuDrawerOpen(false)}
+            data-testid="drawer"
+          >
+            <MUILink
+              href="/"
+              sx={{
+                p: 1,
+                display: { sm: "block", md: "none" },
+              }}
+            >
+              <Image
+                src="https://placehold.co/200x20/3D8EFC/fff/?text=Filmes"
+                width={200}
+                alt="Logo Filmes"
+                height={20}
+                data-testid="logo-sm"
+              />
+            </MUILink>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "100vh",
+              }}
+            >
+              <List>
+                <ListItem
+                  onClick={() => {
+                    setIsMenuDrawerOpen(false);
+                  }}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    gap: 2,
+                  }}
+                >
+                  {/* Accordion Mobile */}
+                  <Accordion
+                    sx={{
+                      width: "100%",
+                      boxShadow: "none",
+                      "&.MuiAccordion-root": {
+                        backgroundColor: "transparent",
+                      },
+                    }}
+                    data-testid="accordion"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
                       sx={{
-                        color: "#4C4C4C",
-                        fontFamily: "var(--font-title)",
-                        textDecoration: "none",
-                        fontSize: "14px",
+                        "&.MuiAccordionSummary-root": {
+                          padding: 0,
+                        },
                       }}
                     >
                       <Typography
-                        variant="body2"
                         sx={{
-                          color: "#58595B",
-                          fontFamily: "var(--font-body)",
-                          fontSize: "14px",
-                          textTransform: "capitalize",
-                          textDecoration: "none",
-                          transition: "all 0.3s ease-in-out",
-                          "&:hover, &:focus, &:active": {
-                            color: "#2C48EC",
-                            textDecoration: "underline",
-                          },
+                          fontFamily: "var(--font-title)",
+                          fontSize: "16px",
+                          color: "var(--title-text-color)",
                         }}
                       >
-                        {genre.name}
+                        Gêneros de filmes
                       </Typography>
-                    </Link>
-                  </Box>
-                ))}
-              </Box>
+                    </AccordionSummary>
+                    <AccordionDetails
+                      sx={{
+                        padding: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 1,
+                        backgroundColor: "transparent",
+                        "&.MuiAccordionDetails-root": {
+                          padding: 0,
+                        },
+                      }}
+                    >
+                      <List>
+                        {menu.map((item) => (
+                          <ListItem
+                            key={item.id}
+                            onClick={() => {
+                              setTimeout(() => setIsMenuDrawerOpen(false), 100);
+                            }}
+                          >
+                            <Link
+                              href={`/genre/${item.id}`}
+                              sx={{
+                                color: "var(--subtitle-text-color)",
+                                fontFamily: "var(--font-body)",
+                                fontSize: "14px",
+                                textTransform: "capitalize",
+                                textDecoration: "none",
+                              }}
+                            >
+                              <ListItemText
+                                primary={item.name}
+                                sx={{
+                                  color: "var(--subtitle-text-color)",
+                                  fontFamily: "var(--font-body)",
+                                  fontSize: "14px",
+                                  fontWeight: 400,
+                                }}
+                              />
+                            </Link>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </AccordionDetails>
+                  </Accordion>
+                </ListItem>
+              </List>
             </Box>
             <Box
               component="a"
@@ -180,6 +365,7 @@ export default function Header() {
                 justifyContent: "center",
                 alignItems: "center",
                 gap: 1,
+                my: 2,
                 textDecoration: "none",
                 transition: "all 0.3s ease-in-out",
                 "&:hover": {
@@ -220,168 +406,26 @@ export default function Header() {
                 Meus Favoritos
               </Typography>
             </Box>
-          </Box>
+          </Drawer>
+        </Box>
 
-          {/* Mobile */}
-          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              onClick={clickIcon}
-              data-testid="drawerMenuButton"
-              sx={{
-                pl: 0,
-                pr: 0,
-                mr: "15px",
-              }}
-            >
-              <MenuIcon sx={{ color: "#4c4c4c" }} />
-            </IconButton>
-            <Drawer
-              anchor="left"
-              open={isMenuDrawerOpen}
-              onClose={() => setIsMenuDrawerOpen(false)}
-              data-testid="drawer"
-            >
-              <MUILink
-                href="/"
-                sx={{
-                  p: 1,
-                  display: { sm: "block", md: "none" },
-                }}
-              >
-                <Image
-                  src="https://placehold.co/200x20/3D8EFC/fff/?text=Filmes"
-                  width={200}
-                  alt="Logo Filmes"
-                  height={20}
-                  data-testid="logo-sm"
-                />
-              </MUILink>
-
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  height: "100vh",
-                }}
-              >
-                <List>
-                  <ListItem
-                    onClick={() => {
-                      setIsMenuDrawerOpen(false);
-                    }}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      gap: 2,
-                    }}
-                  >
-                    {/* Accordion Mobile */}
-                    <Accordion
-                      sx={{
-                        width: "100%",
-                        boxShadow: "none",
-                        "&.MuiAccordion-root": {
-                          backgroundColor: "transparent",
-                        },
-                      }}
-                      data-testid="accordion"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <AccordionSummary
-                        expandIcon={<ExpandMore />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                        sx={{
-                          "&.MuiAccordionSummary-root": {
-                            padding: 0,
-                          },
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontFamily: "var(--font-title)",
-                            fontSize: "16px",
-                            color: "var(--title-text-color)",
-                          }}
-                        >
-                          Gêneros de filmes
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails
-                        sx={{
-                          padding: 0,
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 1,
-                          backgroundColor: "transparent",
-                          "&.MuiAccordionDetails-root": {
-                            padding: 0,
-                          },
-                        }}
-                      >
-                        <List>
-                          {menu.map((item) => (
-                            <ListItem
-                              key={item.id}
-                              onClick={() => {
-                                setTimeout(
-                                  () => setIsMenuDrawerOpen(false),
-                                  100
-                                );
-                              }}
-                            >
-                              <Link
-                                href={`/genres/${item.id}`}
-                                sx={{
-                                  color: "var(--subtitle-text-color)",
-                                  fontFamily: "var(--font-body)",
-                                  fontSize: "14px",
-                                  textTransform: "capitalize",
-                                  textDecoration: "none",
-                                }}
-                              >
-                                <ListItemText
-                                  primary={item.name}
-                                  sx={{
-                                    color: "var(--subtitle-text-color)",
-                                    fontFamily: "var(--font-body)",
-                                    fontSize: "14px",
-                                    fontWeight: 400,
-                                  }}
-                                />
-                              </Link>
-                            </ListItem>
-                          ))}
-                        </List>
-                      </AccordionDetails>
-                    </Accordion>
-                  </ListItem>
-                </List>
-              </Box>
-            </Drawer>
-          </Box>
-
-          <MUILink
-            href="/"
-            sx={{
-              flexGrow: 2,
-              display: { xs: "flex", md: "none" },
-            }}
-          >
-            <Image
-              src="https://placehold.co/200x50/3D8EFC/fff/?text=Filmes"
-              width={200}
-              alt="Logo Filmes"
-              height={50}
-              data-testid="logo-xs"
-              style={{ marginLeft: "10px" }}
-            />
-          </MUILink>
-        </Toolbar>
-      </Grid>
+        <MUILink
+          href="/"
+          sx={{
+            flexGrow: 2,
+            display: { xs: "flex", md: "none" },
+          }}
+        >
+          <Image
+            src="https://placehold.co/200x50/3D8EFC/fff/?text=Filmes"
+            width={200}
+            alt="Logo Filmes"
+            height={50}
+            data-testid="logo-xs"
+            style={{ marginLeft: "10px" }}
+          />
+        </MUILink>
+      </Toolbar>
     </AppBar>
   );
 }
