@@ -2,6 +2,11 @@
 
 Este é um projeto [Next.js](https://nextjs.org) criado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Site no ar
+
+Main: [site](https://teste-ol3ut4hr7-vinigus-projects.vercel.app/)
+Dev: [site](https://teste-2kalrgx37-vinigus-projects.vercel.app/)
+
 ## Começando
 
 Primeiro, execute o servidor de desenvolvimento:
