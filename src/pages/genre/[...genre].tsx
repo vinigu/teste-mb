@@ -77,10 +77,15 @@ export default function GenrePage() {
             gap: "10px",
             flexFlow: "row wrap",
             justifyContent: "center",
-
             [theme.breakpoints.up("md")]: {
               flexDirection: "row",
               gap: "25px",
+            },
+            [theme.breakpoints.down("md")]: {
+              gap: "10px",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
             },
           })}
         >

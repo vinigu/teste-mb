@@ -26,10 +26,6 @@ Mude o .env.example para .env
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-Você pode começar a editar a página modificando `app/page.tsx`. A página será atualizada automaticamente conforme você edita o arquivo.
-
-Este projeto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para otimizar e carregar automaticamente [Geist](https://vercel.com/font), uma nova família de fontes da Vercel.
-
 ## Scripts Disponíveis
 
 No diretório do projeto, você pode executar:
@@ -45,6 +41,16 @@ No diretório do projeto, você pode executar:
 - `npm run compile`: Compila o TypeScript.
 - `npm run storybook`: Inicia o Storybook no modo de desenvolvimento.
 - `npm run build-storybook`: Gera a build do Storybook.
+
+## Teste unitários
+
+Este projeto utiliza o Jest para testes unitários. Para rodar os testes, utilize os seguintes comandos:
+
+- `npm run test`: Executa todos os testes em modo interativo.
+- `npm run test:ci`: Executa os testes em modo contínuo (CI/CD).
+- `npm run test:changes`: Executa apenas os testes relacionados a arquivos alterados.
+
+Certifique-se de que o Jest está configurado corretamente no projeto antes de rodar os testes.
 
 ## Dependências
 

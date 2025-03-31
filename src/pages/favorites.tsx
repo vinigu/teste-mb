@@ -71,6 +71,12 @@ export default function FavoritePage() {
               flexDirection: "row",
               gap: "25px",
             },
+            [theme.breakpoints.down("md")]: {
+              gap: "10px",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            },
           })}
         >
           {movies.length > 0 ? (

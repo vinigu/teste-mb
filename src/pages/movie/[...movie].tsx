@@ -1,7 +1,9 @@
 import Wrapper from "@components/Wrapper";
+import { useFavorite } from "@contexts/Favorite";
 import { useLoading } from "@contexts/Loading";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box, Button, Chip, Rating, Typography } from "@mui/material";
 import { get } from "@services/api";
@@ -11,9 +13,34 @@ import { useAsync } from "react-use";
 import { IMoviePage } from "../../../types/Movie";
 
 export default function MoviePage() {
+  const { favoriteMovies, addFavorite, removeFavorite } = useFavorite();
   const { showLoading } = useLoading();
   const [movieInfo, setMovieInfo] = useState<IMoviePage>({} as IMoviePage);
   const [movieRating, setMovieRating] = useState<number | null>(null);
+
+  const isFavorite =
+    Array.isArray(favoriteMovies) &&
+    movieInfo.id &&
+    favoriteMovies.some((movie) => movie.id === movieInfo.id);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const { id, title, overview, poster_path, vote_average, adult } = movieInfo;
+
+    if (isFavorite) {
+      removeFavorite(id);
+    } else {
+      addFavorite({
+        id,
+        title,
+        overview: overview || "",
+        poster_path,
+        vote_average,
+        adult: !!adult,
+      });
+    }
+  };
 
   const router = useRouter();
   const { movie } = router.query;
@@ -44,6 +71,7 @@ export default function MoviePage() {
           gap: "30px",
           [theme.breakpoints.down("md")]: {
             flexDirection: "column",
+            padding: "0 20px",
           },
         })}
       >
@@ -89,12 +117,18 @@ export default function MoviePage() {
               {movieInfo.title}
             </Typography>
             <Box
-              sx={{
+              sx={(theme) => ({
                 display: "flex",
                 flexWrap: "wrap",
                 gap: "10px",
                 mt: 2,
-              }}
+                [theme.breakpoints.down("md")]: {
+                  gap: "20px",
+                  flexFlow: "row wrap",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              })}
             >
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
                 {movieInfo.genres?.map((genre) => {
@@ -117,7 +151,19 @@ export default function MoviePage() {
               </Box>
             </Box>
 
-            <Box sx={{ display: "flex", mt: 2, gap: "20px" }}>
+            <Box
+              sx={(theme) => ({
+                display: "flex",
+                mt: 2,
+                gap: "20px",
+                [theme.breakpoints.down("md")]: {
+                  gap: "20px",
+                  flexFlow: "row wrap",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              })}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -200,7 +246,9 @@ export default function MoviePage() {
                   marginTop: "8px",
                   color: "var(--body-text-color)",
                 }}
-                dangerouslySetInnerHTML={{ __html: movieInfo.overview }}
+                dangerouslySetInnerHTML={{
+                  __html: movieInfo.overview || "Filme sem Descrição",
+                }}
               />
             </Box>
             <Box
@@ -213,7 +261,9 @@ export default function MoviePage() {
               }}
             >
               <Button
-                startIcon={<FavoriteBorderIcon />}
+                startIcon={
+                  isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />
+                }
                 sx={{
                   color: "#fff",
                   width: "calc(50% - 30px)",
@@ -232,12 +282,9 @@ export default function MoviePage() {
                 }}
                 variant="outlined"
                 data-testid="favorite-button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
+                onClick={handleFavoriteClick}
               >
-                Favoritar
+                {isFavorite ? "Remover" : "Favoritar"}
               </Button>
             </Box>
           </Box>
@@ -267,20 +314,6 @@ export default function MoviePage() {
             }}
           />
         </Box>
-
-        <Box
-          sx={(theme) => ({
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            flexFlow: "row wrap",
-            justifyContent: "center",
-            [theme.breakpoints.up("md")]: {
-              flexDirection: "row",
-              gap: "25px",
-            },
-          })}
-        ></Box>
       </Box>
     </Wrapper>
   );

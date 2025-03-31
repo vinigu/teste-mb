@@ -1,5 +1,4 @@
 import { useFavorite } from "@contexts/Favorite";
-import { Explicit } from "@mui/icons-material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
@@ -36,7 +35,9 @@ export default function MovieCard({
   sx,
 }: MovieCardProps) {
   const { favoriteMovies, addFavorite, removeFavorite } = useFavorite();
-  const isFavorite = favoriteMovies.some((movie) => movie.id === id);
+  const isFavorite =
+    Array.isArray(favoriteMovies) &&
+    favoriteMovies.some((movie) => movie.id === id);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -65,15 +66,12 @@ export default function MovieCard({
         maxWidth: "350px",
         flexShrink: 0,
         [theme.breakpoints.up("md")]: {
-          width: "calc(100% - 10px)",
           ml: "10px",
         },
         [theme.breakpoints.down("md")]: {
           width: "calc(90vw - 10px)",
         },
-        "&.equipment-card-mobile": {
-          width: "100%",
-        },
+
         ...sx,
       })}
       key={id}
@@ -98,6 +96,7 @@ export default function MovieCard({
             width="290"
             height="180"
             image={path}
+            data-testid="movie-image"
             sx={{
               objectFit: "cover",
             }}
@@ -167,19 +166,6 @@ export default function MovieCard({
                     mt: 2,
                   }}
                 >
-                  {isAdult && (
-                    <Box
-                      sx={{ display: "flex", alignItems: "center", gap: "5px" }}
-                    >
-                      <Explicit
-                        sx={{
-                          color: "var(--title-text-color)",
-                          fontSize: "16px",
-                        }}
-                      />
-                    </Box>
-                  )}
-
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "5px" }}
                   >
@@ -187,6 +173,7 @@ export default function MovieCard({
                       name="rating_vote"
                       defaultValue={vote_average / 2}
                       precision={0.5}
+                      data-testid="rating"
                       readOnly
                     />
                   </Box>
