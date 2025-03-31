@@ -66,12 +66,13 @@ export default function MovieCard({
         maxWidth: "350px",
         flexShrink: 0,
         [theme.breakpoints.up("md")]: {
+          width: "calc(100% - 10px)",
           ml: "10px",
+          justifyContent: "space-evenly",
         },
         [theme.breakpoints.down("md")]: {
           width: "calc(90vw - 10px)",
         },
-
         ...sx,
       })}
       key={id}
